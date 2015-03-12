@@ -6,8 +6,8 @@ Application
 ===========
 in order to gain the power of Celery library, i need to instantiate one:
 
->>> from celery import Celery
->>> app = Celery()
+> from celery import Celery
+> app = Celery()
 
 now i got an instance of Celery called ‘app’. it’s thread-safe, so...
 
@@ -18,17 +18,17 @@ But when you send a task in Celery, the task message does not contain any source
 task names to their actual functions,which called `task registry`.
 
 # define a task in celery instance.
->>> @app.task
+> @app.task
 ... def add(x, y):
 ...    return x+y
 
 now i have a task named ‘add’ can be assing to workers. see its full name:
->>> add
-<@task: __main__.add>
->>> add.name
+> add
+<@task: __main__.add> 
+> add.name
 __main__.add
->>> app.tasks[`__main__.add`]
-<@task: __main__.add>
+> app.tasks[`__main__.add`]
+<@task: __main__.add> 
 
 whenever Celery is not able to detect which module the task aka. function belongs to , it uses main module name to generate the beginning of the task name.
 
@@ -44,13 +44,13 @@ if __name__ == ‘__main_____”:
     app.worker_main() #start a worker to do task.
 
 when this module is imported by another process, the task defined in will be named starting with the module name
->>> from task_with_worker import add
->>> add.name
+> from task_with_worker import add
+> add.name
 <task_with_worker.add>
 
 you can also specify another name for the main module:
->>> app = Celery(‘myTasks’)
->>> app.main
+> app = Celery(‘myTasks’)
+> app.main
 ‘myTasks’
 
 
@@ -71,17 +71,17 @@ Laziness
 --------
 the Celery instance is lazy. when you create a celery instance say app, and then define a task use app.task():
 the task will not be evaluated immediatly untill it’s used or call app.finalize().
->>> @app.task
+> @app.task
 ....def add(x, y): return x+y
 
->>> type( add )
+> type( add )
 <class ‘celery.local.PromiseProxy>
 
->>> add.__evaluated__()
+> add.__evaluated__()
 False
 
->>> add   # this will casuse repr(add) to happen
->>> add.__evaluated__()
+> add   # this will casuse repr(add) to happen
+> add.__evaluated__()
 True
 
 Insisting the ‘app chain’
@@ -114,7 +114,7 @@ class Hello(Task):
         return ‘hello {0}’.format(to)
 tasks.register(Hello) #make class Hello to be a task
 
->>> Hello.delay(‘world!’)
+> Hello.delay(‘world!’)
 
 in Celery3.0, to define a task:
 from celery.task import task
@@ -126,4 +126,4 @@ def hello(to):  #not need a class.run(),just a func immediatly
 once a task is bound to an app, it will read configuration to set default values and so on.
 it is also possible to change the default base class for an application by changing its app.Task attribute.
 
-referenc:[Celery user guide Application] (http://docs.celeryproject.org/en/latest/userguide/application.html)
+referenc:[Celery user guide Application](http://docs.celeryproject.org/en/latest/userguide/application.html)

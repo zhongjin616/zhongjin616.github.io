@@ -16,48 +16,48 @@ started is never executed again..
 
 Basics
 -------
-i can easily create a task from ###any callable### by using the task() decorator:
->@app.task(serializer=’json’)
->def add(x, y):
->   return x+y
+i can easily create a task from __any callable__ by using the task() decorator:
+>  @app.task(serializer=’json’)
+>  def add(x, y):
+>     return x+y
 
 Names
 ------
 every task must have a unique name.
 if not specified, the function name will be used.
->@app.task(‘sum-of-two-numbers’)
->def add(x, y):
->   return x+y
+>  @app.task(‘sum-of-two-numbers’)
+>  def add(x, y):
+>     return x+y
 
 but this is not the best practice, we can use the module name as a namespace to avoid confilction
->@app.task(name=’moudleName.add’)
->def add(x, y):
->   return x + y
+>  @app.task(name=’moudleName.add’)
+>  def add(x, y):
+>     return x + y
 
 Automatic naming and Relative imports
 -------------------------------------
 Relative imports and automatic name generation does not go well together, so if you’re using relative imports
-you should set the name explicitly just like ###above###
+you should set the name explicitly just like __above__
 
 for example, if the client imports the module ‘myapp.tasks’ as ‘.tasks’, and the worker imports the module
-as ‘myapp.tasks’, then generated names ###won’t match### and an ###NotRegistered### error will be raised by the ###worker###
->>>>from project.myapp.tasks import mytask
->>>>mytask.name
+as ‘myapp.tasks’, then generated names __won’t match__ and an __NotRegistered__ error will be raised by the __worker__
+>  from project.myapp.tasks import mytask
+>  mytask.name
 ‘project.myapp.tasks.mytask’
 
->>>>from myapp.tasks import mytask
->>>>mytask.name
+>  from myapp.tasks import mytask
+>  mytask.name
 ‘myapp.tasks.mytask’
 
-so for this reason you must be consistent in ###how you import modules###, which is also a ###python best practice###
+so for this reason you must be consistent in __how you import modules__, which is also a __python best practice__
 
-similary, you should not use ###old-style### relative imports:
->from module import foo  # very bad!!
+similary, you should not use __old-style__ relative imports:
+> from module import foo  # very bad!!
 
->from proj.module import foo # good practice
+> from proj.module import foo # good practice
 
-###new-style### relative imports are fine and can be used:(but not the best practice)
->from .module import foo # Good
+__new-style__ relative imports are fine and can be used:(but not the best practice)
+> from .module import foo # Good
 
 so if you don’t have time to refactor old code, then you have to specifying the names explicitly instead of
 the automatic naming.
@@ -74,7 +74,7 @@ passed to the task decorator will actually be set as an attribute of the resulti
 * Task.ignore_result
 * Task.serializer
 * Task.backend
-* Task.###acks_late###
+* Task.__acks_late__
 
 RabbiMQ Result Backend
 -----------------------
@@ -94,26 +94,30 @@ ng means the client does not have to poll for new states.
 Custom task classes
 -------------------
   All tasks inherit from the app.Task class. the run() method becomes the task body.
->@app.task
->def add(x, y):
+> @app.task
+> def add(x, y):
     return x+ y
 
 celery will do this behind the scense:
->class AddTask(app.Task):
+> class AddTask(app.Task):
 
     def run(self, x, y):
         return x+y
 add = app.tasks(AddTask.name)
 
-###Instantiation###
+__Instantiation__
   A task is not instantiated for every request, but is registered in the task registry as a global intance.
 this is very useful to cache resources, e.g. a base Task that caches a database connection:
->from celery import Task
->class DatabaseTask(Task):
->   abstract = True
->   db = None
->
->   @property
+> from celery import Task
+
+> class DatabaseTask(Task):
+
+>    abstract = True
+
+>    db = None
+
+> 
+>    @property
     def db(self):
         if self._db is None:
             self._db = Database.connect()
@@ -130,18 +134,18 @@ Tips and Best practice
 ------------------------
 
 * Ignore results you don’t want as storing results wastes time and resources.
->@app.task(ignore_result=True)
->def mytask(...):
+> @app.task(ignore_result=True)
+> def mytask(...):
     doSomething(...)
 
 Results can even be disabled globally using the CELERY_IGNORE_RESULT setting.
 
 * Disabling rate limits altogether is recommanded if you don’t have any tasks using them.
     this is because the rate limit subsystem introduces quite a lot of comlexity.
-set the ### CELERY_DISABLE_RATE_LIMITS=True to disable rate limits globaly.
+set the __ CELERY_DISABLE_RATE_LIMITS=True to disable rate limits globaly.
 
 * Avoid launching synchronous subtasks
-    ###subtask### can be seen as a callback function chain after the task.
+    __subtask__ can be seen as a callback function chain after the task.
   having a task wait for the result of another task is really ineffcient, and may cause a deadlock.
   make your design asynchronous instead, for example by using `callbacks`. In celery you can create a chain of
   tasks by linking together differnt subtasks.
