@@ -4,8 +4,10 @@ title: Jim's github page
 ---
 <h2>{{ page.title }}</h2>
 <p>latest page</p>
+<p>{{ site.baseusrl }}</p>
 <ul>
 　　{% for post in site.posts %}
+    <p>{{ post.url }}</p>
     <li>{{ post.date | date_to_string }}
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
