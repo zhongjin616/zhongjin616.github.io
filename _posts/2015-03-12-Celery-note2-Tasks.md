@@ -145,7 +145,10 @@ Results can even be disabled globally using the CELERY_IGNORE_RESULT setting.
 set the __ CELERY_DISABLE_RATE_LIMITS=True to disable rate limits globaly.
 
 * Avoid launching synchronous subtasks
-    __subtask__ can be seen as a callback function chain after the task.
+  __subtask__ can be seen as a callback function chain after the task. or say **it is an object used to pass
+  around the signature of `task invocation`,(for example to send it over the network) and they also support the Calling api.
+  task.s(arg1,arg2,kwarg1=’x’,kwarg2=’y’).apply__async()
+
   having a task wait for the result of another task is really ineffcient, and may cause a deadlock.
   make your design asynchronous instead, for example by using `callbacks`. In celery you can create a chain of
   tasks by linking together differnt subtasks.
