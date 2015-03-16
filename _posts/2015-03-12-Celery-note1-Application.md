@@ -69,7 +69,6 @@ when this module is imported by another process, the task defined in will be nam
 
 > add.name
 
-<task_with_worker.add>
 
 you can also specify another name for the main module:
 
@@ -77,8 +76,7 @@ you can also specify another name for the main module:
 
 > app.main
 
-‘myTasks’
-
+`myTasks`
 
 Configuration
 --------------
@@ -141,17 +139,17 @@ from celery import current_app
 class Schelduler(object):
 
     def run(self):  #must have this func to call  .delay()
-    
-        app = current_app 
 
-######instead, i use this 
+        app = current_app
+
+######instead, i use this
 
 from celery.app import app_or_default
 
 class Scheduler(object):
 
     def __init__(self, app=None):
-    
+
         self.app = app_or_default(app)
 
 API Evalution
@@ -191,4 +189,4 @@ def hello(to):  #not need a class.run(),just a func immediatly
 once a task is bound to an app, it will read configuration to set default values and so on.
 it is also possible to change the default base class for an application by changing its app.Task attribute.
 
-referenc:[Celery user guide Application](http://docs.celeryproject.org/en/latest/userguide/application.html)
+referenc is [Celery user guide Application](http://docs.celeryproject.org/en/latest/userguide/application.html)
