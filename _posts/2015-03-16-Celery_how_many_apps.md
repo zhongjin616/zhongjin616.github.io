@@ -14,4 +14,6 @@ there are several attribute i can use in Celery:
 
 * celery.app.app_or_default(app=None)   this is the could be a chooice, if you don’t want to create a new celery instance and just use default application
 
-reference celery userguide application [“app chain”] (http://celery.readthedocs.org/en/latest/userguide/application.html)
+reference celery userguide application [app chain”][1]
+
+[1]:(http://celery.readthedocs.org/en/latest/userguide/application.html)
