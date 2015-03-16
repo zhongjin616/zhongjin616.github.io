@@ -28,16 +28,21 @@ file. it will automatically detect **time zone** change.
 
 starting
 -----------
-to start the **celery beat** service:
+to start the **celery beat** service:i
+
     $ celery -A proj beat
+
 it does nothing sepcial but loads schedules from configure file and the worker will do the task when it kicks a task off.
 Beat needs to store the last run times of the tasks in a **local database file** , which is named celerybeat-schedule by default.
 
 also you can specify a location to store the runtime-info:
+
     $celery -A proj beat -s /home/location/to/store/runtime/info/your_custome_filename
+
 
 using custom scheduler classes
 -------------------------------
 the default scheduler is **celery.beat.PersistentScheduler**, which is simply keeping track of the last run times in a **local database file**(a shelve)
 you can start your custom scheduler class by *-S argument*
+
     celery -A proj beat -S djcelery.schedulers.DatabaseScheduler
