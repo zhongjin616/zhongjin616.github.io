@@ -85,7 +85,7 @@ or use a dedicated configuration module by call “app.config_from_boject(‘nam
 
 :NOTE  the Changes made at runtime wins the configuration module(if any), if none of this exists, the default configuration will be used aka. celery.app.defaults.
 
-###### app.config_from_boject() can have three mode to call: 
+#### app.config_from_boject() can have three mode to call: 
 
 1. using the name of a module
 
@@ -94,7 +94,7 @@ or use a dedicated configuration module by call “app.config_from_boject(‘nam
 3. using a configuration class/object
 
 
-###### app.config_from_envvar(‘variable_name’) allow i to configure through environment variable
+#### app.config_from_envvar(‘variable_name’) allow i to configure through environment variable
 
 Laziness
 --------
@@ -132,7 +132,7 @@ Insisting the ‘app chain’
 
 it is a good proctice to put the `app` as an argument, i call this the ‘app chain’
 
-###### bad practice
+#### bad practice
 
 from celery import current_app
 
@@ -142,7 +142,7 @@ class Schelduler(object):
 
         app = current_app
 
-######instead, i use this
+####instead, i use this
 
 from celery.app import app_or_default
 
