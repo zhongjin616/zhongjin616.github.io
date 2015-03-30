@@ -37,8 +37,10 @@
 
                 this is not recommanded, as it use hard code. very difficult to maintain
 
-    * when you assign a new task, use `async_apply(routing_key=’’,queue=’’,exchange=’’)`
-        reference [celery.app.tasks] (http://celery.readthedocs.org/en/latest/reference/celery.app.task.html)
+    * when you assign a new task, use `async_apply(routing_key= ,queue=,exchange=)`
+
             if the task fail to delivery by the arg setting, the route set in celeryconfig.py CELERY_ROUTES will use to deliver it
+
+[celery.app.tasks](http://celery.readthedocs.org/en/latest/reference/celery.app.task.html)
 
 ## if we want a worker just listen one specific queue, we need a **-Q** to exclude other queue explicitly.
