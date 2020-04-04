@@ -22,15 +22,14 @@ layout: default
             {% endfor %}
           </div><!-- End Tags -->
           <div class="page-share">
-            <span>Share:</span>
+            <!--
             <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
+            -->
+            <span id="busuanzi_container_page_pv">PageView : <span id="busuanzi_value_page_pv"></span></span>
           </div><!-- End Share -->
         </div>
         {% include author-box.html %}
         {% include recent-post.html %}
-        {% include newsletter.html %}
         {% include disqus.html %}
       </div>
     </div> <!-- End Wrapper -->
