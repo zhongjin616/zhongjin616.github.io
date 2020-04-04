@@ -1,13 +1,12 @@
 ---
 layout: post
 title:  Golang标准库net/rpc导致程序崩溃？
-date:   2019-02-15 13:32:20 +0300
+date:   2020-02-15 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: post-1.jpg # Add image post (optional)
-tags: [Blog, Golang, rpc]
-author: 
+tags: [Blog, Golang, net/rpc]
+author: zhongjin616
 ---
-
 
 2020年春节。公司的业务在春节期间流量猛增，运维报告发现有容器重启的现象。
 拿到日志，根据堆栈信息的提示，查看出错的代码行, 第一感觉是这里怎么会出错？gorutine里定义的局部变量肯定只有它自己能访问到。这里贴一下我用于复现问题而写的代码示例。
