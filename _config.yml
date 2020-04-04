@@ -10,7 +10,7 @@ url: "https://zhongjin616.github.io" # the base hostname & protocol for your sit
 
 # Author settings
 author: zhongjin616 # add your name
-author-pic: adam-face.jpg
+author-pic: avatar.jpg
 about-author: hi, there.
 
 # Contact links
@@ -28,7 +28,9 @@ pinterest: # Add your Pinterest handle
 mailchimp: # Add your MailChimp form identifier.
 
 # Disqus
-discus_identifier: mr-brown # Add your discus identifier
+discus_identifier:  # Add your discus identifier
+# IntenseDebate
+intensedebate_identifier: 43a1f39c2be4f30a467e6a74fa2d2b08
 
 # Tracker
 analytics: # Google Analytics
